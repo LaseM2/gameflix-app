@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reviews</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            max-width: 900px;
+            width: 90%;
+            margin-top: 40px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Form styling */
+        form {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        form input[type="text"] {
+            padding: 8px;
+            width: 40%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .review-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .review-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .review-username {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #007bff;
+        }
+
+        .review-comment {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .back-button {
+            display: block;
+            width: max-content;
+            margin: 30px auto 0 auto;
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>All Reviews</h1>
+
+    <!-- Review submission form -->
+    <h2>Leave a Review</h2>
+    <form th:action="@{/reviews-page}" method="post">
+        <input type="text" name="username" placeholder="Your name" required>
+        <input type="text" name="comment" placeholder="Your review" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Display existing reviews -->
+    <div class="reviews-container">
+        <div class="review-card" th:each="review : ${reviews}">
+            <div class="review-username" th:text="${review.username}">Username</div>
+            <div class="review-comment" th:text="${review.comment}">Review comment</div>
+        </div>
+    </div>
+
+    <!-- Back button -->
+    <a th:href="@{/welcome}" class="back-button">⬅ Back</a>
+</div>
+</body>
+</html>

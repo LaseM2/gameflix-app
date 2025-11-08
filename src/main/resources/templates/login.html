@@ -1,0 +1,124 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h2>Login</h2>
+
+<form th:action="@{/login}" method="post">
+    <label>Username:</label>
+    <input type="text" name="username" required /><br><br>
+
+    <label>Password:</label>
+    <input type="password" name="password" required /><br><br>
+
+    <button type="submit">Sign In</button>
+</form>
+
+<div th:if="${param.error}">
+    <p style="color:red;">Invalid username or password</p>
+</div>
+
+<div th:if="${param.logout}">
+    <p style="color:green;">You have been logged out.</p>
+</div>
+
+<p><a th:href="@{/register}">Don't have an account? Register</a></p>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            width: 350px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        form input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        form button {
+            width: 85%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .link {
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h1>Login</h1>
+
+    <!-- Optional error message -->
+    <div th:if="${param.error}" class="error-message">
+        Invalid username or password.
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <a th:href="@{/register}" class="link">Don't have an account? Register</a>
+</div>
+</body>
+</html>
