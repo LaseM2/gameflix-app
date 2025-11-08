@@ -13,3 +13,6 @@ http://localhost:8080
 **Stop the container**
 docker ps
 docker stop <container-id>
+
+**Run the Docker container detached (in the background) so it keeps running even if you close IntelliJ or the terminal (not sure if this works yet)**
+docker run -d -p 8080:8080 --name gameflix-backend gameflix-backend
